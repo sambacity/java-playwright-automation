@@ -1,25 +1,29 @@
 package Base;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.microsoft.playwright.Page;
+import config.ConfigReader;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import utils.PlaywrightFactory;
+
+import java.util.Properties;
 
 public class BaseTest {
 
-    protected WebDriver driver;
+    protected Page page;
+    protected Properties prop;
+    protected PlaywrightFactory pf;
 
     @BeforeMethod
-    public void setUp(){
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.demoblaze.com/");
+    public void setUp() {
+        ConfigReader configReader = new ConfigReader();
+        prop = configReader.initProp();
+        pf = new PlaywrightFactory();
+        page = pf.initBrowser(prop);
     }
 
     @AfterMethod
-    public void tearDOwn(){
-        if (driver!= null){
-            driver.quit();
-        }
+    public void tearDown() {
+        page.context().browser().close();
     }
 }
