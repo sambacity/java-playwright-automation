@@ -1,5 +1,7 @@
 Feature: Landing Page Validation
 
-  Scenario: Verify title of landing page
+  Scenario: TC01_Purchase Gym tshirt for men
     Given user navigates to landing page
-    Then page title should be "Automation Exercise"
+    And user clicks on the search bar and searches for "Gym Tshirts"
+    When User clicks on the search icon to search the product
+    Then user will land on the product search page for Gym Tshirts

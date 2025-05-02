@@ -14,6 +14,10 @@ public class BaseTest {
     protected Properties prop;
     protected PlaywrightFactory pf;
 
+    public BaseTest() {
+        this.page = PlaywrightFactory.getPage();
+    }
+
     @BeforeMethod
     public void setUp() {
         ConfigReader configReader = new ConfigReader();
